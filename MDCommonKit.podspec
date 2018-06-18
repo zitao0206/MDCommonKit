@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MDCommonKit'
-  s.version          = '0.1.0'
+  s.version          = smart_version
   s.summary          = 'A short description of MDCommonKit.'
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/leon0206/MDCommonKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'leon0206' => 'zitao.li@quvideo.com' }
+  s.author           = { 'leon0206' => '634376133@qq.com' }
   s.source           = { :git => 'https://github.com/leon0206/MDCommonKit.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -32,11 +32,11 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'MDCommonKit/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'MDCommonKit' => ['MDCommonKit/Assets/*.png']
-  # }
+   s.resource_bundles = {
+     'MDCommonKit' => ['MDCommonKit/Assets/*.png']
+   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+   s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
