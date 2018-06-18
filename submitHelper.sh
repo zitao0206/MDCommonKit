@@ -1,4 +1,6 @@
 #!/bin/bash
+git status
+sleep 2
 echo "-------Begin-------"
 git add .
 git commit -am "自动化代码提交"
@@ -34,5 +36,8 @@ done;
 echo "自动升级tag为："$latestTag
 git tag $latestTag
 git push -v origin refs/tags/$latestTag
+sleep 3
+echo "发布到Github："
+pod trunk push MDCommonKit.podspec --allow-warnings
 
 echo "--------End--------"
