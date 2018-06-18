@@ -1,0 +1,60 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/lizitao/Desktop/MDCommonKit/MDCommonKit/Example/Build/Products/Debug-iphoneos/MDCommonKit/MDCommonKit.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "MDCommonKit-Swift.h",
+          'external-contents': "/Users/lizitao/Desktop/MDCommonKit/MDCommonKit/Example/Build/Products/Debug-iphoneos/MDCommonKit/MDCommonKit.framework/Headers/MDCommonKit-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "MDCommonKit-umbrella.h",
+          'external-contents': "/Users/lizitao/Desktop/MDCommonKit/MDCommonKit/Example/Pods/Target Support Files/MDCommonKit/MDCommonKit-umbrella.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/lizitao/Desktop/MDCommonKit/MDCommonKit/Example/Build/Products/Debug-iphoneos/MDCommonKit/MDCommonKit.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/lizitao/Desktop/MDCommonKit/MDCommonKit/Example/Build/Intermediates/Pods.build/Debug-iphoneos/MDCommonKit.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/lizitao/Desktop/MDCommonKit/MDCommonKit/Example/Build/Products/Debug-iphoneos/Pods_MDCommonKit_Example.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "Pods-MDCommonKit_Example-umbrella.h",
+          'external-contents': "/Users/lizitao/Desktop/MDCommonKit/MDCommonKit/Example/Pods/Target Support Files/Pods-MDCommonKit_Example/Pods-MDCommonKit_Example-umbrella.h"
+        },
+        {
+          'type': 'file',
+          'name': "Pods_MDCommonKit_Example-Swift.h",
+          'external-contents': "/Users/lizitao/Desktop/MDCommonKit/MDCommonKit/Example/Build/Products/Debug-iphoneos/Pods_MDCommonKit_Example.framework/Headers/Pods_MDCommonKit_Example-Swift.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/lizitao/Desktop/MDCommonKit/MDCommonKit/Example/Build/Products/Debug-iphoneos/Pods_MDCommonKit_Example.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/lizitao/Desktop/MDCommonKit/MDCommonKit/Example/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-MDCommonKit_Example.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MDCommonKit_Example' do
+  pod 'MDCommonKit', :path => '../'
+
+  target 'MDCommonKit_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end
