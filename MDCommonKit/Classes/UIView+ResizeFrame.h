@@ -2,8 +2,8 @@
 //  UIView+ResizeFrame.h
 //  MDProject
 //
-//  Created by lizitao on 2017/4/19.
-//  Copyright © 2017年 lizitao. All rights reserved.
+//  Created by chen on 2017/4/19.
+//  Copyright © 2017年 chen. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

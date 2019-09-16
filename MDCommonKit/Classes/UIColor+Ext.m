@@ -1,14 +1,14 @@
 //
-//  UIColor+nvutils.m
+//  UIColor+Ext.m
 //  Pods
 //
 //  Created by xwd on 3/22/16.
 //
 //
 
-#import "UIColor+nvutils.h"
+#import "UIColor+Ext.h"
 
-@implementation UIColor (nvutils)
+@implementation UIColor (Ext)
 
 + (UIColor *)nvColorWithHexString:(NSString *)hexString {
     NSString *cString = [[hexString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString]; //去掉前后空格换行符

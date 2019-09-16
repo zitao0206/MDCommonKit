@@ -3,7 +3,7 @@
 //  MDProject
 //
 //  Created by lizitao on 2017/4/19.
-//  Copyright © 2017年 lizitao. All rights reserved.
+//  Copyright © 2017年 . All rights reserved.
 //
 
 #import "UIView+ResizeFrame.h"

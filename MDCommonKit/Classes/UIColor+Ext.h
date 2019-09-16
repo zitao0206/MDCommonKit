@@ -1,5 +1,5 @@
 //
-//  UIColor+nvutils.h
+//  UIColor+Ext.h
 //  Pods
 //
 //  Created by xwd on 3/22/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (nvutils)
+@interface UIColor (Ext)
 
 + (UIColor *)nvColorWithHexString:(NSString *)hexString;
 
