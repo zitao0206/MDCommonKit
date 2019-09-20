@@ -2,7 +2,7 @@
 //  NSArray+functional.m
 //  MDProject
 //
-//  Created by lizitao on 17/3/12.
+//  Created by Leon on 17/3/12.
 //  Copyright © 2017年 lizitao. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 @implementation NSArray (functional1)
 
-- (void)DP_eachWithIndex:(DPEnumerateBlock)block {
+- (void)MD_eachWithIndex:(MDEnumerateBlock)block {
     NSInteger index = 0;
     for (id obj in self) {
         block(index, obj);
@@ -18,7 +18,7 @@
     }
 }
 
-- (NSArray *)DP_map:(DPTransformBlock)block{
+- (NSArray *)MD_map:(MDTransformBlock)block{
     NSParameterAssert(block != nil);
     NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];
     for (id obj in self) {
@@ -27,14 +27,14 @@
     return ret;
 }
 
-- (NSArray *)DP_select:(DPValidationBlock)block{
+- (NSArray *)MD_select:(MDValidationBlock)block{
     NSParameterAssert(block != nil);
 	return [self objectsAtIndexes:[self indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
 		return block(obj);
 	}]];
 }
 
-- (NSArray *)DP_reject:(DPValidationBlock)block{
+- (NSArray *)MD_reject:(MDValidationBlock)block{
     NSParameterAssert(block != nil);
 	
 	return [self objectsAtIndexes:[self indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
@@ -42,7 +42,7 @@
 	}]];
 }
 
-- (id)DP_reduce:(id)initial withBlock:(DPAccumulationBlock)block {
+- (id)MD_reduce:(id)initial withBlock:(MDAccumulationBlock)block {
 	NSParameterAssert(block != nil);
 	id result = initial;
     
@@ -52,12 +52,12 @@
 	return result;
 }
 
-- (instancetype)DP_take:(NSUInteger)n {
+- (instancetype)MD_take:(NSUInteger)n {
     if ([self count] <= n) return self;
     return [self subarrayWithRange:NSMakeRange(0, n)];
 }
 
-- (id)DP_find:(DPValidationBlock)block {
+- (id)MD_find:(MDValidationBlock)block {
     for (id obj in self) {
         if (block(obj)) {
             return obj;
@@ -66,7 +66,7 @@
     return nil;
 }
 
-- (id)DP_match:(DPValidationBlock)block {
+- (id)MD_match:(MDValidationBlock)block {
     for (id object in self) {
         if (block(object)) {
             return object;
@@ -75,7 +75,7 @@
     return nil;
 }
 
-- (BOOL)DP_allObjectsMatched:(DPValidationBlock)block {
+- (BOOL)MD_allObjectsMatched:(MDValidationBlock)block {
     for (id obj in self) {
         if (!block(obj)) {
             return NO;
@@ -84,7 +84,7 @@
     return YES;
 }
 
-- (BOOL)DP_anyObjectMatched:(DPValidationBlock)block {
+- (BOOL)MD_anyObjectMatched:(MDValidationBlock)block {
     for (id obj in self) {
         if (block(obj)) {
             return YES;
@@ -93,9 +93,9 @@
     return NO;
 }
 
-- (NSString *)DP_join:(NSString *)seperator {
+- (NSString *)MD_join:(NSString *)seperator {
     NSMutableString *string = [NSMutableString string];
-    [self DP_eachWithIndex:^(NSInteger index, id obj) {
+    [self MD_eachWithIndex:^(NSInteger index, id obj) {
         if (index != 0) {
             [string appendString:seperator];
         }
@@ -105,17 +105,17 @@
     
 }
 
-- (BOOL)DP_existObjectMatch:(DPValidationBlock)block {
-    return [self DP_match:block] != nil;
+- (BOOL)MD_existObjectMatch:(MDValidationBlock)block {
+    return [self MD_match:block] != nil;
 }
 
-- (BOOL)DP_allObjectMatch:(DPValidationBlock)block {
-    return [self DP_match:^BOOL(id obj) {
+- (BOOL)MD_allObjectMatch:(MDValidationBlock)block {
+    return [self MD_match:^BOOL(id obj) {
         return !block(obj);
     }] == nil;
 }
 
-- (NSArray *)DP_groupBy:(DPTransformBlock)block {
+- (NSArray *)MD_groupBy:(MDTransformBlock)block {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     for (id obj in self) {
         NSString *key = block(obj);
@@ -127,9 +127,9 @@
     return [dic allValues];
 }
 
-- (NSArray *)DP_zip:(NSArray *)array {
+- (NSArray *)MD_zip:(NSArray *)array {
     NSMutableArray *result = [NSMutableArray array];
-    [self DP_eachWithIndex:^(NSInteger index, id obj) {
+    [self MD_eachWithIndex:^(NSInteger index, id obj) {
         [result addObject:obj];
         if (index >= array.count) return;
         [result addObject:array[index]];
@@ -137,10 +137,10 @@
     return result;
 }
 
-- (NSString *)DP_insertIntoPlaceHolderString:(NSString *)placeHolder {
+- (NSString *)MD_insertIntoPlaceHolderString:(NSString *)placeHolder {
     NSArray *components = [placeHolder componentsSeparatedByString:@"%%"];
     if ([components count] < 2) return placeHolder;
-    return [[components DP_zip:self] DP_join:@""];
+    return [[components MD_zip:self] MD_join:@""];
 }
 
 @end

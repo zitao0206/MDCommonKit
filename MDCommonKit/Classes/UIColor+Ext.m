@@ -2,7 +2,7 @@
 //  UIColor+Ext.m
 //  Pods
 //
-//  Created by xwd on 3/22/16.
+//  Created by Leon on 3/22/16.
 //
 //
 
@@ -10,7 +10,8 @@
 
 @implementation UIColor (Ext)
 
-+ (UIColor *)nvColorWithHexString:(NSString *)hexString {
++ (UIColor *)nvColorWithHexString:(NSString *)hexString
+{
     NSString *cString = [[hexString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString]; //去掉前后空格换行符
     
     // String should be 6 or 8 characters

@@ -2,16 +2,16 @@
 //  NSArray+functional.h
 //  MDProject
 //
-//  Created by lizitao on 17/3/12.
+//  Created by Leon on 17/3/12.
 //  Copyright © 2017年 lizitao. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-typedef void(^DPEnumerateBlock)(NSInteger index, id obj);
-typedef id (^DPTransformBlock)(id obj);
-typedef BOOL (^DPValidationBlock)(id obj);
-typedef id (^DPAccumulationBlock)(id sum, id obj);
+typedef void(^MDEnumerateBlock)(NSInteger index, id obj);
+typedef id (^MDTransformBlock)(id obj);
+typedef BOOL (^MDValidationBlock)(id obj);
+typedef id (^MDAccumulationBlock)(id sum, id obj);
 
 @interface NSArray (functional1)
 
@@ -20,7 +20,7 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *  @warning if index is not needed, prefer forin loop; consider map select reduce first
  *  @param block side effect logic
  */
-- (void)DP_eachWithIndex:(DPEnumerateBlock)block;
+- (void)MD_eachWithIndex:(MDEnumerateBlock)block;
 
 /**
  *  functional map method
@@ -29,7 +29,7 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *
  *  @return mapped array
  */
-- (NSArray *)DP_map:(DPTransformBlock)block;
+- (NSArray *)MD_map:(MDTransformBlock)block;
 
 /**
  *  function select method
@@ -38,7 +38,7 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *
  *  @return new array with selectecd objects
  */
-- (NSArray *)DP_select:(DPValidationBlock)block;
+- (NSArray *)MD_select:(MDValidationBlock)block;
 
 /**
  *  functional reject, similar with select
@@ -47,7 +47,7 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *
  *  @return new array with filterd objects
  */
-- (NSArray *)DP_reject:(DPValidationBlock)block;
+- (NSArray *)MD_reject:(MDValidationBlock)block;
 
 /**
  *  functional reduce method
@@ -57,7 +57,7 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *
  *  @return sum
  */
-- (id)DP_reduce:(id)initial withBlock:(DPAccumulationBlock)block;
+- (id)MD_reduce:(id)initial withBlock:(MDAccumulationBlock)block;
 
 /**
  *  take first n objects as array, if n > array length, return self
@@ -66,7 +66,7 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *
  *  @return array
  */
-- (instancetype)DP_take:(NSUInteger)n;
+- (instancetype)MD_take:(NSUInteger)n;
 
 /**
  *  find the object match condition in array
@@ -75,7 +75,7 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *
  *  @return matched object or nil
  */
-- (id)DP_find:(DPValidationBlock)block;
+- (id)MD_find:(MDValidationBlock)block;
 
 /**
  *  check whether all objects in array match condition
@@ -84,7 +84,7 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *
  *  @return a
  */
-- (BOOL)DP_allObjectsMatched:(DPValidationBlock)block;
+- (BOOL)MD_allObjectsMatched:(MDValidationBlock)block;
 
 
 
@@ -95,7 +95,7 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *
  *  @return a
  */
-- (BOOL)DP_anyObjectMatched:(DPValidationBlock)block;
+- (BOOL)MD_anyObjectMatched:(MDValidationBlock)block;
 
 /**
  *  join array of string to a string
@@ -104,7 +104,7 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *
  *  @return string
  */
-- (NSString *)DP_join:(NSString *)seperator;
+- (NSString *)MD_join:(NSString *)seperator;
 
 /**
  *  return the first matched object in array
@@ -113,7 +113,7 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *
  *  @return the first matched object, if not found, return nil
  */
-- (id)DP_match:(DPValidationBlock)block;
+- (id)MD_match:(MDValidationBlock)block;
 
 /**
  *  check whether array contain matched object
@@ -122,7 +122,7 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *
  *  @return bool
  */
-- (BOOL)DP_existObjectMatch:(DPValidationBlock)block;
+- (BOOL)MD_existObjectMatch:(MDValidationBlock)block;
 
 /**
  *  check whether all objects in array match the validation
@@ -131,13 +131,13 @@ typedef id (^DPAccumulationBlock)(id sum, id obj);
  *
  *  @return bool
  */
-- (BOOL)DP_allObjectMatch:(DPValidationBlock)block;
+- (BOOL)MD_allObjectMatch:(MDValidationBlock)block;
 
 
-- (NSArray *)DP_groupBy:(DPTransformBlock)block;
+- (NSArray *)MD_groupBy:(MDTransformBlock)block;
 
-- (NSArray *)DP_zip:(NSArray *)array;
+- (NSArray *)MD_zip:(NSArray *)array;
 
-- (NSString *)DP_insertIntoPlaceHolderString:(NSString *)placeHolder;
+- (NSString *)MD_insertIntoPlaceHolderString:(NSString *)placeHolder;
 
 @end

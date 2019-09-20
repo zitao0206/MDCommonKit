@@ -2,29 +2,13 @@
 //  UIView+ResizeFrame.m
 //  MDProject
 //
-//  Created by lizitao on 2017/4/19.
+//  Created by Leon on 2017/4/19.
 //  Copyright © 2017年 . All rights reserved.
 //
 
 #import "UIView+ResizeFrame.h"
 
 @implementation UIView (ResizeFrame)
-
-- (CGSize)resizeWithWidth:(CGFloat)width
-{
-	[self sizeToFit];
-	CGFloat height = width / self.frame.size.width * self.frame.size.height;
-	self.frame = CGRectMake(0, 0, width, height);
-	return CGSizeMake(width, height);
-}
-
-- (CGSize)resizeWithHeight:(CGFloat)height
-{
-    [self sizeToFit];
-    CGFloat width = height / self.frame.size.height * self.frame.size.width;
-    self.frame = CGRectMake(0, 0, width, height);
-    return CGSizeMake(width, height);
-}
 
 - (CGFloat)left
 {
@@ -74,16 +58,6 @@
     self.frame = frame;
 }
 
-- (CGFloat)baseLine
-{
-    return self.bottom;
-}
-
-- (void)setBaseLine:(CGFloat)baseLine
-{
-    self.bottom = baseLine;
-}
-
 - (CGFloat)centerX
 {
     return self.center.x;
@@ -109,6 +83,18 @@
     return self.frame.size.width;
 }
 
+- (CGFloat)viewWidth
+{
+    return self.frame.size.width;
+}
+
+- (void)setViewWidth:(CGFloat)width
+{
+    CGRect frame = self.frame;
+    frame.size.width = width;
+    self.frame = frame;
+}
+
 - (void)setWidth:(CGFloat)width
 {
     CGRect frame = self.frame;
@@ -121,11 +107,38 @@
     return self.frame.size.height;
 }
 
+- (CGFloat)viewHeight
+{
+    return self.frame.size.height;
+}
+
 - (void)setHeight:(CGFloat)height
 {
     CGRect frame = self.frame;
     frame.size.height = height;
     self.frame = frame;
+}
+
+- (void)setViewHeight:(CGFloat)height
+{
+    CGRect frame = self.frame;
+    frame.size.height = height;
+    self.frame = frame;
+}
+
+- (CGFloat)inCenterX
+{
+    return self.frame.size.width*0.5;
+}
+
+- (CGFloat)inCenterY
+{
+    return self.frame.size.height*0.5;
+}
+
+- (CGPoint)inCenter
+{
+    return CGPointMake(self.inCenterX, self.inCenterY);
 }
 
 - (CGFloat)ttScreenX
@@ -157,7 +170,6 @@
             x -= scrollView.contentOffset.x;
         }
     }
-    
     return x;
 }
 
@@ -177,7 +189,7 @@
 
 - (CGRect)screenFrame
 {
-    return CGRectMake(self.screenViewX, self.screenViewY, self.width, self.height);
+    return CGRectMake(self.screenViewX, self.screenViewY, self.viewWidth, self.viewHeight);
 }
 
 - (CGPoint)origin
@@ -204,34 +216,182 @@
     self.frame = frame;
 }
 
-- (CGFloat)aspectScaledHeight
+- (CGFloat)orientationWidth
 {
-    return self.frame.size.height;
+    return UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)
+    ? self.viewHeight : self.viewWidth;
 }
 
-- (void)setAspectScaledHeight:(CGFloat)aspectScaledHeight
+- (CGFloat)orientationHeight
 {
-    self.width = self.width * aspectScaledHeight / self.height;
-    self.height = aspectScaledHeight;
+    return UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)
+    ? self.viewWidth : self.viewHeight;
 }
 
-- (CGFloat)aspectScaledWidth
+- (UIEdgeInsets)xySafeAreaInsets
 {
-    return self.frame.size.width;
-}
-
-- (void)setAspectScaledWidth:(CGFloat)aspectScaledWidth
-{
-    self.width = self.height * aspectScaledWidth / self.width;
-    self.height = aspectScaledWidth;
-}
-
-- (void)removeAllSubviews
-{
-    while (self.subviews.count) {
-        UIView* child = self.subviews.lastObject;
-        [child removeFromSuperview];
+    if (@available(iOS 11.0, *)) {
+        return self.safeAreaInsets;
+    } else {
+        return UIEdgeInsetsMake(0, 0, 0, 0);
     }
+}
+
+- (CGSize)resizeWithWidth:(CGFloat)width
+{
+    [self sizeToFit];
+    CGFloat height = width / self.frame.size.width * self.frame.size.height;
+    self.frame = CGRectMake(0, 0, width, height);
+    return CGSizeMake(width, height);
+}
+
+- (CGSize)resizeWithHeight:(CGFloat)height
+{
+    [self sizeToFit];
+    CGFloat width = height / self.frame.size.height * self.frame.size.width;
+    self.frame = CGRectMake(0, 0, width, height);
+    return CGSizeMake(width, height);
+}
+
+- (CGPoint)offsetFromView:(UIView*)otherView
+{
+    CGFloat x = 0, y = 0;
+    for (UIView* view = self; view && view != otherView; view = view.superview) {
+        x += view.left;
+        y += view.top;
+    }
+    return CGPointMake(x, y);
+}
+
++ (CGFloat)xyStatusBarHeight
+{
+    return [[UIApplication sharedApplication] statusBarFrame].size.height;
+}
+
+-(void)setRotation:(CGFloat)rotation
+{
+    self.transform = CGAffineTransformMakeRotation(rotation);
+}
+
+-(void)setFrameLeftInsideFrame:(CGRect)superFrame centered:(BOOL)centered
+{
+    CGRect frame =self.frame;
+    frame.origin.x = 0;
+    if (centered) {
+        frame.origin.y = (superFrame.size.height/2) - (frame.size.height/2);
+    }
+    self.frame = frame;
+}
+
+-(void)setFrameRightInsideFrame:(CGRect)superFrame centered:(BOOL)centered
+{
+    CGRect frame =self.frame;
+    frame.origin.x = superFrame.size.width-self.frame.size.width;
+    if (centered) {
+        frame.origin.y = (superFrame.size.height/2) - (frame.size.height/2);
+    }
+    self.frame = frame;
+}
+
+
+-(void)setFrameBottomedInsideFrame:(CGRect)superFrame centered:(BOOL)centered
+{
+    
+    CGRect frame =self.frame;
+    frame.origin.y = superFrame.size.height-self.frame.size.height;
+    if (centered) {
+        frame.origin.x = (superFrame.size.width/2) - (frame.size.width/2);
+    }
+    self.frame = frame;
+}
+
+
+-(void)setFrameToppedInsideFrame:(CGRect)superFrame centered:(BOOL)centered
+{
+    
+    CGRect frame =self.frame;
+    frame.origin.y = 0;
+    if (centered) {
+        frame.origin.x = (superFrame.size.width/2) - (frame.size.width/2);
+    }
+    self.frame = frame;
+    
+}
+
+-(void)centerYInsideFrame:(CGRect)superFrame
+{
+    CGRect frame =self.frame;
+    frame.origin.y = (superFrame.size.height/2) - (frame.size.height/2);
+    self.frame = frame;
+}
+
+
+-(void)centerXInsideFrame:(CGRect)superFrame
+{
+    CGRect frame =self.frame;
+    frame.origin.x = (superFrame.size.width/2) - (frame.size.width/2);
+    self.frame = frame;
+}
+
+
+-(void)centerInsideFrame:(CGRect)superFrame
+{
+    CGRect frame =self.frame;
+    frame.origin.x = (superFrame.size.width/2) - (frame.size.width/2);
+    frame.origin.y = (superFrame.size.height/2) - (frame.size.height/2);
+    self.frame = frame;
+}
+
+-(void)shiftFrameY:(CGFloat)shift
+{
+    CGRect frame =self.frame;
+    frame.origin.y+=shift;
+    self.frame = frame;
+}
+
+-(void)shiftFrameX:(CGFloat)shift
+{
+    CGRect frame =self.frame;
+    frame.origin.x+=shift;
+    self.frame = frame;
+}
+
+-(void)shiftFrameWidth:(CGFloat)shift
+{
+    CGRect frame =self.frame;
+    frame.size.width+=shift;
+    self.frame = frame;
+}
+
+-(void)shiftFrameHeight:(CGFloat)shift
+{
+    CGRect frame =self.frame;
+    frame.size.height+=shift;
+    self.frame = frame;
+}
+
+-(void)setSQFrame:(CGFloat)shift
+{
+    CGRect frame =self.frame;
+    frame.size.height=shift;
+    frame.size.width=shift;
+    self.frame = frame;
+}
+
+-(void)setZeroPos
+{
+    CGRect frame =self.frame;
+    frame.origin.x=0;
+    frame.origin.y=0;
+    self.frame = frame;
+}
+
+-(void)setZeroSize
+{
+    CGRect frame =self.frame;
+    frame.size.width=0;
+    frame.size.height=0;
+    self.frame = frame;
 }
 
 @end
