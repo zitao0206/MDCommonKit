@@ -11,7 +11,6 @@
 #import <MDCommonKit/NSString+Ext.h>
 #import <MDCommonKit/NSURL+Ext.h>
 #import <MDCommonKit/UIColor+Ext.h>
-#import <MDCommonKit/UIView+ResizeFrame.h>
 
 
 #endif /* Header_h */
