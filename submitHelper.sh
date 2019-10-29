@@ -33,6 +33,8 @@ for((k=0;k<100;k++)) do
     fi
 done;
 
+
+
 echo "自动升级tag为："$latestTag
 git tag $latestTag
 git push -v origin refs/tags/$latestTag
