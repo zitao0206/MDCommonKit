@@ -26,12 +26,14 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'MDCommonKit/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'MDCommonKit' => ['MDCommonKit/Assets/*.png']
-  # }
 
-  #s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  if $use_source=='1'
+    # ！！！！！！源码方式，需要加载哪些代码和资源，请在这里做相应变更
+    s.source_files = "#{s.name}/Classes/**/*"
+  else
+    # ！！！！！！以下为固定写法，理论上不要动它
+    s.vendored_frameworks = "Framework/#{s.version}/*.framework"
+  end
+  
+
 end
