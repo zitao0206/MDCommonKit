@@ -28,10 +28,10 @@ TODO: Add long description of the pod here.
 
   s.preserve_paths = "#{s.name}/Classes/**/*","Framework/**/*", "#{s.name}/Assets/**/*",
 
+  $use_binary = nil
+
   $use_binary = ENV['use_binary']
   $pod_use_binary = ENV["#{s.name}_use_binary"]
-
-  $use_binary = nil
 
   if $pod_use_binary =='1'
     $use_binary = true
