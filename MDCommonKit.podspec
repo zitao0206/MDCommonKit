@@ -45,7 +45,7 @@ TODO: Add long description of the pod here.
 
   tag = `git describe --abbrev=0 --tags 2>/dev/null`.strip
   if tag && !tag.empty?
-    $use_binary =true
+    $use_binary =false
   end
 
   if $use_binary ==true
