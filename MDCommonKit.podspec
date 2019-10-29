@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
     tag = `git describe --abbrev=0 --tags 2>/dev/null`.strip
     if $?.success? then tag else "0.0.1" end
   end
-  s.version          = smart_version
+  s.version          = '1.0.19'
   s.summary          = 'A short description of MDCommonKit.'
   s.description      = <<-DESC
 TODO: Add long description of the pod here.
