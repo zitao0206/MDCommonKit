@@ -10,7 +10,12 @@
 
 @implementation UIColor (Ext)
 
-+ (UIColor *)nvColorWithHexString:(NSString *)hexString
++ (UIColor *)md_ColorWithHexString:(NSString *)hexString
+{
+    return [UIColor md_ColorWithHexString:hexString alpha:1.0];
+}
+
++ (UIColor *)md_ColorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha
 {
     NSString *cString = [[hexString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString]; //去掉前后空格换行符
     
@@ -49,20 +54,21 @@
     NSString *bString = [cString substringWithRange:range];
     
     // Scan values
-    unsigned r, g, b, a;
+    unsigned r, g, b;
     [[NSScanner scannerWithString:rString] scanHexInt:&r];  //扫描16进制到int
     [[NSScanner scannerWithString:gString] scanHexInt:&g];
     [[NSScanner scannerWithString:bString] scanHexInt:&b];
-    [[NSScanner scannerWithString:aString] scanHexInt:&a];
     
-    return [UIColor nvColorWithIntRed:r green:g blue:b alpha:a];
+    return [UIColor md_ColorWithIntRed:r green:g blue:b alpha:alpha];
 }
 
-+ (UIColor *)nvColorWithIntRed:(NSInteger)r green:(NSInteger)g blue:(NSInteger)b {
-    return [UIColor nvColorWithIntRed:r green:g blue:b alpha:255];
++ (UIColor *)md_ColorWithIntRed:(NSInteger)r green:(NSInteger)g blue:(NSInteger)b
+{
+    return [UIColor md_ColorWithIntRed:r green:g blue:b alpha:255];
 }
 
-+ (UIColor *)nvColorWithIntRed:(NSInteger)r green:(NSInteger)g blue:(NSInteger)b alpha:(NSInteger)a {
++ (UIColor *)md_ColorWithIntRed:(NSInteger)r green:(NSInteger)g blue:(NSInteger)b alpha:(NSInteger)a
+{
     return [UIColor colorWithRed:((CGFloat)r / 255.f) green:((CGFloat)g / 255.f) blue:((CGFloat)b / 255.f) alpha:((CGFloat)a / 255.f)];
 }
 
