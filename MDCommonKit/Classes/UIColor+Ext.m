@@ -64,12 +64,12 @@
 
 + (UIColor *)md_colorWithIntRed:(NSInteger)r green:(NSInteger)g blue:(NSInteger)b
 {
-    return [UIColor md_colorWithIntRed:r green:g blue:b alpha:255];
+    return [UIColor md_colorWithIntRed:r green:g blue:b alpha:1.0];
 }
 
-+ (UIColor *)md_colorWithIntRed:(NSInteger)r green:(NSInteger)g blue:(NSInteger)b alpha:(NSInteger)a
++ (UIColor *)md_colorWithIntRed:(NSInteger)r green:(NSInteger)g blue:(NSInteger)b alpha:(CGFloat)a
 {
-    return [UIColor colorWithRed:((CGFloat)r / 255.f) green:((CGFloat)g / 255.f) blue:((CGFloat)b / 255.f) alpha:((CGFloat)a / 255.f)];
+    return [UIColor colorWithRed:((CGFloat)r / 255.f) green:((CGFloat)g / 255.f) blue:((CGFloat)b / 255.f) alpha:a];
 }
 
 @end

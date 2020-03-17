@@ -10,10 +10,10 @@
 
 @interface UIColor (Ext)
 
-+ (UIColor *)md_ColorWithHexString:(NSString *)hexString;
-+ (UIColor *)md_ColorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
-+ (UIColor *)md_ColorWithIntRed:(NSInteger)r green:(NSInteger)g blue:(NSInteger)b;
-+ (UIColor *)md_ColorWithIntRed:(NSInteger)r green:(NSInteger)g blue:(NSInteger)b alpha:(NSInteger)a;
++ (UIColor *)md_colorWithHexString:(NSString *)hexString;
++ (UIColor *)md_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
++ (UIColor *)md_colorWithIntRed:(NSInteger)r green:(NSInteger)g blue:(NSInteger)b;
++ (UIColor *)md_colorWithIntRed:(NSInteger)r green:(NSInteger)g blue:(NSInteger)b alpha:(CGFloat)a;
 
 @end
 
