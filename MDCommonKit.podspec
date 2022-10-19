@@ -23,8 +23,13 @@ TODO: Add long description of the pod here.
   s.author           = { 'leon0206' => '634376133@qq.com' }
   s.source           = { :git => 'https://github.com/leon0206/MDCommonKit.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
+  s.pod_target_xcconfig = {
+    'MARTIN_PACKAGE_VERSION' => '1.0',
+    'GCC_PRECOMPILE_PREFIX_HEADER' => true,
+    'CLANG_ENABLE_MODULES' => 'YES',
+  }
 
   s.preserve_paths = "#{s.name}/Classes/**/*","Framework/**/*", "#{s.name}/Assets/**/*",
 
