@@ -37,7 +37,6 @@ latestChar=$[$lastchar+1]
 echo $latestChar
 latestTag=${arr1[0]}.${arr1[1]}.$latestChar
 
-
 for((k=0;k<100;k++)) do
     if [[ "${arr[@]}" =~ $latestTag ]];then
         latestChar=$[$latestChar+1]
